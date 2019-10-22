@@ -34,24 +34,23 @@ public class DataLoader implements ApplicationRunner {
         Forest black_forest = new Forest("Black Forest", "Forest");
         forestRepository.save(black_forest);
 
-        Prey rabbit = new Prey("Lucy", "rabbit");
-        preyRepository.save(rabbit);
-
-        Prey mouse = new Prey("Rupert", "mouse");
-        preyRepository.save(mouse);
-
-        Prey earthworm = new Prey("George", "earthworm");
-        preyRepository.save(earthworm);
-
-        Predator fox = new Predator("Freddy", "Fox");
+        Predator fox = new Predator("Freddy", "Fox", borneo);
         predatorRepository.save(fox);
-        
-        Predator bear = new Predator("Johnny", "Bear");
+
+        Predator bear = new Predator("Johnny", "Bear", amazon);
         predatorRepository.save(bear);
 
-        Predator eagle = new Predator("Margaret", "Eagle");
+        Predator eagle = new Predator("Margaret", "Eagle", borneo);
         predatorRepository.save(eagle);
 
+        Prey rabbit = new Prey("Lucy", "rabbit", bear);
+        preyRepository.save(rabbit);
+
+        Prey mouse = new Prey("Rupert", "mouse", fox);
+        preyRepository.save(mouse);
+
+        Prey earthworm = new Prey("George", "earthworm", eagle);
+        preyRepository.save(earthworm);
 
     }
 

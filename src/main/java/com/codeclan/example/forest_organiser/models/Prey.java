@@ -23,7 +23,7 @@ public class Prey {
     @JoinColumn(name = "predator_id", nullable = false)
     private Predator predator;
 
-    public Prey(String name, String species) {
+    public Prey(String name, String species, Predator predator) {
         this.name = name;
         this.species = species;
         this.predator = predator;

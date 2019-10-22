@@ -20,6 +20,7 @@ public class Forest {
     @Column(name = "type")
     private String type;
 
+    // One Forest to many Predators
     @JsonIgnoreProperties("forest")
     @OneToMany(mappedBy = "forest")
     private List<Predator> predators;
@@ -64,4 +65,5 @@ public class Forest {
     public void setPredators(List<Predator> predators) {
         this.predators = predators;
     }
+
 }

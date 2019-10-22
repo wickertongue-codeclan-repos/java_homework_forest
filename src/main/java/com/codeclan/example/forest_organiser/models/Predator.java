@@ -3,9 +3,11 @@ package com.codeclan.example.forest_organiser.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "forests")
+@Table(name = "predators")
 public class Predator {
 
     @Id
@@ -18,18 +20,34 @@ public class Predator {
     @Column(name = "species")
     private String species;
 
-    @JsonIgnoreProperties("forests")
+    // One Forest to many Predators
+    @JsonIgnoreProperties("predators")
     @ManyToOne
     @JoinColumn(name = "forest_id", nullable = false)
     private Forest forest;
 
-    public Predator(String name, String species) {
+    // One Predator to many Prey
+    @JsonIgnoreProperties("predators")
+    @OneToMany(mappedBy = "predator")
+    private List<Prey> prey;
+
+
+    public Predator(String name, String species, Forest forest) {
         this.name = name;
         this.species = species;
         this.forest = forest;
+        this.prey = new ArrayList<>();
     }
 
     public Predator() {
+    }
+
+    public List<Prey> getPrey() {
+        return prey;
+    }
+
+    public void setPrey(List<Prey> prey) {
+        this.prey = prey;
     }
 
     public String getName() {
