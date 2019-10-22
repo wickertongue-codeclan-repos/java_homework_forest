@@ -1,5 +1,7 @@
 package com.codeclan.example.forest_organiser.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,11 +18,18 @@ public class Predator {
     @Column(name = "species")
     private String species;
 
-    private Forest forest
+    @JsonIgnoreProperties("forests")
+    @ManyToOne
+    @JoinColumn(name = "forest_id", nullable = false)
+    private Forest forest;
 
     public Predator(String name, String species) {
         this.name = name;
         this.species = species;
+        this.forest = forest;
+    }
+
+    public Predator() {
     }
 
     public String getName() {
@@ -37,5 +46,29 @@ public class Predator {
 
     public void setType(String species) {
         this.species = species;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public Forest getForest() {
+        return forest;
+    }
+
+    public void setForest(Forest forest) {
+        this.forest = forest;
     }
 }
